@@ -1,0 +1,32 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#quiz {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+#options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+#submit {
+    margin-top: 20px;
+}
+
+#feedback {
+    margin-top: 20px;
+}
+
+#score {
+    font-weight: bold;
+    margin-top: 20px;
+}
