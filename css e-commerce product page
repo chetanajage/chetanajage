@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product {
+    width: 45%;
+}
+
+#cart {
+    width: 45%;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-items li {
+    margin-bottom: 10px;
+}
+
+#cart-items img {
+    width: 50px;
+    vertical-align: middle;
+}
