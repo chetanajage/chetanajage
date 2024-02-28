@@ -1,0 +1,76 @@
+const quizData = [
+    {
+        question: 'What is the capital of France?',
+        options: ['Paris', 'London', 'Berlin', 'Madrid'],
+        answer: 'Paris'
+    },
+    {
+        question: 'Which planet is known as the Red Planet?',
+        options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+        answer: 'Mars'
+    },
+    // Add more questions as needed
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const submitButton = document.getElementById('submit');
+const feedbackElement = document.getElementById('feedback');
+const scoreElement = document.getElementById('score-value');
+
+loadQuestion();
+
+submitButton.addEventListener('click', () => {
+    const selectedOption = document.querySelector('input[type=radio]:checked');
+    if (!selectedOption) {
+        return; // If no option is selected, do nothing
+    }
+
+    const answer = selectedOption.value;
+    if (answer === quizData[currentQuestion].answer) {
+        score++;
+        feedbackElement.textContent = 'Correct!';
+    } else {
+        feedbackElement.textContent = 'Wrong!';
+    }
+
+    scoreElement.textContent = score;
+    selectedOption.checked = false;
+    currentQuestion++;
+
+    if (currentQuestion < quizData.length) {
+        loadQuestion();
+    } else {
+        quizEnd();
+    }
+});
+
+function loadQuestion() {
+    const currentQuizData = quizData[currentQuestion];
+    questionElement.textContent = currentQuizData.question;
+    optionsElement.innerHTML = '';
+
+    currentQuizData.options.forEach((option, index) => {
+        const optionElement = document.createElement('input');
+        optionElement.type = 'radio';
+        optionElement.name = 'option';
+        optionElement.value = option;
+        optionElement.id = `option${index}`;
+
+        const labelElement = document.createElement('label');
+        labelElement.htmlFor = `option${index}`;
+        labelElement.textContent = option;
+
+        optionsElement.appendChild(optionElement);
+        optionsElement.appendChild(labelElement);
+    });
+}
+
+function quizEnd() {
+    questionElement.textContent = 'Quiz completed!';
+    optionsElement.innerHTML = '';
+    submitButton.style.display = 'none';
+}
